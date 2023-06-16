@@ -8,16 +8,17 @@ module.exports = {
     'airbnb-typescript/base',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
-    'prettier'],
+    'prettier'
+  ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
     project: './tsconfig.json'
   },
-  plugins: ['prettier', '@typescript-eslint'],
+  plugins: ['prettier', '@typescript-eslint', 'import'],
   rules: {
     'global-require': 'error',
-    'import/extensions': ['error', 'always', { ignorePackages: true }],
+    'import/extensions': ['error', 'always', { ts: 'never' }],
     "import/prefer-default-export": "off",
     'no-use-before-define': ['error', { variables: false }],
     'prettier/prettier': 'error',
