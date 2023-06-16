@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "start": "webpack server --open",
-    "build": "webpack --node-env=production"
+    "build": "webpack --node-env=production",
+    "lint": "eslint . --ext .ts"
   },
   "author": "",
   "license": "ISC",
