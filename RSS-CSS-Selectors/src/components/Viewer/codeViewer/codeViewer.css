@@ -1,0 +1,7 @@
+.html-viewer__task-code div {
+  padding-left: 20px;
+}
+
+.html-viewer__task-code div.hover {
+  color: rgba(255, 255, 255, .8);
+}
