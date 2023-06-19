@@ -1,3 +1,4 @@
+import './level.css';
 import { levels } from '../../data/levels';
 import { createElement, getElement } from '../../helpers';
 import { CodeEditor } from '../Editor/codeEditor';
@@ -22,6 +23,7 @@ class Level {
     const levelData = levels[numberOfLevel];
     this.taskTitle.innerHTML = levelData.task;
     this.codeViewer.setContent(levelData.boardMarkup);
+    this.resultViewer.setContent(levelData.boardMarkup);
   }
 }
 
