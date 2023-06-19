@@ -21,6 +21,7 @@ module.exports = {
     'import/extensions': ['error', 'always', { ts: 'never' }],
     "import/prefer-default-export": "off",
     'no-use-before-define': ['error', { variables: false }],
+    "class-methods-use-this": "off",
     'prettier/prettier': 'error',
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/array-type": [
