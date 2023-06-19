@@ -1,0 +1,156 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 18px;
+  font-size: 14px;
+  color: #C9C8CC;
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Exo 2", "Lato", "Helvetica Neue", sans-serif;
+  background-color: #ffffff;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+.button {
+  background-color: #5c595fa1;
+  border: none;
+  color: #c9c8cc;
+  border-radius: 5px;
+  padding: 3px;
+  min-width: 50px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.button:hover {
+  background-color: #5c595f;
+}
+
+.container {
+  max-width: 1220px;
+  margin: 0px auto;
+  padding: 0px 20px;
+}
+
+.header {
+  background-color: #37323E;
+  min-height: 70px;
+}
+
+.header__container {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.level {
+  width: calc(100% - 175px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #37323E;
+}
+
+.result-viewer {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.result-viewer__container {
+  position: relative;
+}
+
+.code-editor {
+  background-color: #2B282F;
+  width: 45%;
+  border-radius: 5px;
+  margin: 20px 5px;
+  padding: 10px;
+}
+
+.code-editor__container {
+  padding: 0;
+}
+
+.code-editor__header {
+  background-color: #272525;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.code-editor__title {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.code-editor__file-name {
+  font-size: 12px;
+}
+
+.code-editor__file {
+  border: 1px solid #5C595F;
+  background-color: #2B282F;
+  width: 100%;
+  display: flex;
+}
+
+.code-editor__line-numbers {
+  background-color: #5C595F;
+  padding: 5px;
+  text-align: right;
+}
+
+.code-editor__code {
+  width: 100%;
+}
+
+.code-editor__text {
+  margin: 0;
+}
+
+.html-viewer {
+  color: rgba(255, 255, 255, .3);
+}
+
+.footer {
+  background-color: #2B282F;
+}
+
+.footer__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.logo::after {
+  content: url(./assets/rss_logo.svg);
+  display: block;
+  width: 100px;
+  margin: 0 20px;
+}
+
+@media (max-width: 720px) {
+  .code-editor {
+    width: 90%;
+  }
+}
