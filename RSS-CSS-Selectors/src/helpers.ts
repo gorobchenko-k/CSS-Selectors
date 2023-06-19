@@ -28,7 +28,7 @@ export const createElement = <K extends keyof HTMLElementTagNameMap>(
   if (classes) {
     classes.forEach((className) => element.classList.add(className));
   }
-  if (content) element.innerHTML = content;
+  if (content) element.textContent = content;
   if (idName) element.setAttribute('id', idName);
   return element;
 };
