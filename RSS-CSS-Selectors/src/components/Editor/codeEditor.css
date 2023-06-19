@@ -1,0 +1,12 @@
+.code-editor__input-answer {
+  width: 75%;
+  margin-right: 5px;
+}
+
+.code-editor__input-answer.wrong-answer {
+  background-color: #ff9393;
+}
+
+.code-editor__button {
+  width: 20%;
+}
