@@ -22,6 +22,29 @@ class CodeViewer {
       HTML_VIEWER_TEXT.closedTag
     );
   }
+
+  public setContent(code: string): void {
+    const tags = code
+      .split('\n')
+      .slice(1, -1)
+      .map((item) => item.trim());
+    let parentNode: HTMLElement | null = null;
+    tags.forEach((tag) => {
+      if (tag.indexOf('/') === 1) {
+        if (!parentNode) throw new Error('parentNode is null');
+        parentNode.append(tag);
+        parentNode = null;
+      } else {
+        const element = createElement('div', ['tag'], tag);
+        if (tag.indexOf('/') >= 0) {
+          (parentNode || this.taskCode).append(element);
+        } else {
+          this.taskCode.append(element);
+          parentNode = element;
+        }
+      }
+    });
+  }
 }
 
 export { CodeViewer };

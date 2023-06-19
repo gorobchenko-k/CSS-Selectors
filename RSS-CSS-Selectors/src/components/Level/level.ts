@@ -21,6 +21,7 @@ class Level {
   public setContent(numberOfLevel: number): void {
     const levelData = levels[numberOfLevel];
     this.taskTitle.innerHTML = levelData.task;
+    this.codeViewer.setContent(levelData.boardMarkup);
   }
 }
 
