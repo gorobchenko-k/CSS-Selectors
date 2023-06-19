@@ -1,0 +1,27 @@
+.result-viewer__tagName {
+  position: absolute;
+  left: 45%;
+  padding: 10px;
+  background-color: #5c595f78;
+  border: 1px solid;
+  border-radius: 5px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 1s ease 0s;
+}
+
+.result-viewer__tagName.visibled {
+  visibility: visible;
+  opacity: 1;
+}
+
+.result-viewer__board {
+  background: #2B282F;
+  min-height: 142px;
+  border-radius: 10px;
+  border: 1px solid #5C595F;
+  padding: 15px 15px 22px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
