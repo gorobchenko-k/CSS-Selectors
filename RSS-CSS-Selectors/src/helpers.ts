@@ -8,11 +8,11 @@ export const getElement = <TElement extends Element = HTMLElement>(
   return element;
 };
 
-export const getElements = <TElement extends Element = HTMLElement>(
+export const getElements = <E extends Element = Element>(
   selector: string,
   scope?: HTMLElement
-): TElement | NodeList => {
-  const elements: NodeList | null = (scope || document).querySelectorAll(selector);
+): NodeListOf<E> => {
+  const elements: NodeListOf<E> | null = (scope || document).querySelectorAll(selector);
   if (!elements) throw new Error(`Elements ${selector} does not exist`);
 
   return elements;
