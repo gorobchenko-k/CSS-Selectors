@@ -1,5 +1,6 @@
 .result-viewer__tagName {
   position: absolute;
+  z-index: 5;
   left: 45%;
   padding: 10px;
   background-color: #5c595f78;

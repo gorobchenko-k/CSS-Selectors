@@ -29,6 +29,10 @@ class Level {
 
     this.answerElements = Array.from(getElements(levelData.selector, this.resultViewer.board));
     this.answerElements.forEach((element) => this.startAnimationForAnswerElement(element));
+
+    this.resultViewer.boardElements.forEach((element, index) => {
+      this.addHoverEffect(element, this.codeViewer.codeElements[index]);
+    });
   }
 
   private startAnimationForAnswerElement(element: Element): void {
@@ -36,6 +40,36 @@ class Level {
       element.classList.toggle('skew');
       this.startAnimationForAnswerElement(element);
     }, 500);
+  }
+
+  private addHoverEffect(boardElement: HTMLElement, codeElement: HTMLDivElement): void {
+    boardElement.addEventListener('mouseover', (e) => {
+      this.toggelHoverEffect(e, boardElement, codeElement);
+    });
+    boardElement.addEventListener('mouseout', (e) => {
+      this.toggelHoverEffect(e, boardElement, codeElement);
+    });
+    codeElement.addEventListener('mouseover', (e) => {
+      this.toggelHoverEffect(e, boardElement, codeElement);
+    });
+    codeElement.addEventListener('mouseout', (e) => {
+      this.toggelHoverEffect(e, boardElement, codeElement);
+    });
+  }
+
+  private toggelHoverEffect(
+    e: Event,
+    boardElement: HTMLElement,
+    codeElement: HTMLDivElement
+  ): void {
+    e.stopPropagation();
+    this.resultViewer.visibleTagName(
+      boardElement.offsetLeft,
+      codeElement.firstChild?.textContent || '',
+      codeElement.lastChild?.textContent || ''
+    );
+    boardElement.classList.toggle('hover');
+    codeElement.classList.toggle('hover');
   }
 }
 

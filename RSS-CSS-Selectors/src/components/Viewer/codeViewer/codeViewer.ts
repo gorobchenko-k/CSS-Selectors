@@ -14,6 +14,8 @@ const HTML_VIEWER_TEXT: ContentList = {
 class CodeViewer {
   private taskCode: HTMLDivElement;
 
+  public codeElements: HTMLDivElement[] = [];
+
   constructor() {
     this.taskCode = createElement('div', CODE_VIEWER_STYLE.taskCode);
     getElement('.html-viewer__code').append(
@@ -36,6 +38,7 @@ class CodeViewer {
         parentNode = null;
       } else {
         const element = createElement('div', ['tag'], tag);
+        this.codeElements.push(element);
         if (tag.indexOf('/') >= 0) {
           (parentNode || this.taskCode).append(element);
         } else {

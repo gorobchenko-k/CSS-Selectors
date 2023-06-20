@@ -10,7 +10,9 @@ const RESULT_VIEWER_STYLE: StyleList = {
 class ResultViewer {
   private tagName: HTMLDivElement;
 
-  private board: HTMLDivElement;
+  public board: HTMLDivElement;
+
+  public boardElements: HTMLElement[] = [];
 
   constructor() {
     this.tagName = createElement('div', RESULT_VIEWER_STYLE.tagName);
@@ -32,6 +34,7 @@ class ResultViewer {
         parentNode = null;
       } else {
         const element = this.createBoardElement(tag);
+        this.boardElements.push(element);
         if (index === -1) {
           this.board.append(element);
           parentNode = element;
@@ -42,7 +45,7 @@ class ResultViewer {
     });
   }
 
-  private createBoardElement(tag: string): Element {
+  private createBoardElement(tag: string): HTMLElement {
     const { tagName, idName, className } = this.getSelectors(tag);
     const element = document.createElement(tagName);
     if (className) element.classList.add(className);
@@ -64,6 +67,14 @@ class ResultViewer {
     const idName = matchId ? matchId[0].slice(4, -1) : null;
     const className = matchClass ? matchClass[0].slice(7, -1) : null;
     return { tagName, idName, className };
+  }
+
+  public visibleTagName(offsetLeft: number, openedTag: string, closedTag: string): void {
+    this.tagName.style.left = `${offsetLeft}px`;
+    this.tagName.classList.toggle('visibled');
+    if (this.tagName.classList.contains('visibled')) {
+      this.tagName.textContent = openedTag === closedTag ? openedTag : `${openedTag} ${closedTag}`;
+    }
   }
 }
 
