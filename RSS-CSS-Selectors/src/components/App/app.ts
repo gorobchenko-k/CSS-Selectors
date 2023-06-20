@@ -13,6 +13,7 @@ class App {
   }
 
   public start(): void {
+    this.nav.selectCurrentLevel(this.currentLevel);
     this.level.setContent(this.currentLevel);
   }
 }

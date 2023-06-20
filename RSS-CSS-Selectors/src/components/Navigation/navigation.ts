@@ -33,6 +33,8 @@ class Navigation {
 
   private navNextButton: HTMLButtonElement;
 
+  private navListItem: Record<string, HTMLSpanElement>[] = [];
+
   constructor() {
     this.navList = createElement('ul', NAV_STYLE.navList);
     this.navCurrentLevel = createElement('span', NAV_STYLE.navCurrentLevel, '1');
@@ -55,11 +57,17 @@ class Navigation {
       const itemNumber = createElement('span', NAV_STYLE.navLevelNumber, `Level ${index + 1}`);
       listItem.setAttribute('data-level', index.toString());
       listItem.append(itemStatus, itemNumber);
+      this.navListItem.push({ itemStatus, itemNumber });
       this.navList.append(listItem);
     });
 
     nav.append(navTitle, navButtons, this.navList);
     getElement('.header__container').append(nav);
+  }
+
+  public selectCurrentLevel(currentLevel: number): void {
+    this.navListItem.forEach((listItem) => listItem.itemNumber.classList.remove('checked'));
+    this.navListItem[currentLevel].itemNumber.classList.add('checked');
   }
 }
 
