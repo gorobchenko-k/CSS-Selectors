@@ -13,6 +13,10 @@
   transform: skew(0deg, 5deg);
 }
 
+.board__element.rightAnswer {
+  transform: translate(0, -100vh);
+}
+
 circle {
   background-color: #dbd0fd;
   border-radius: 50%;

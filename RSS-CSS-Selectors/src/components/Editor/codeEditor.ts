@@ -8,9 +8,9 @@ const CSS_EDITOR_STYLE: StyleList = {
 };
 
 class CodeEditor {
-  private inputAnswer: HTMLInputElement;
+  public inputAnswer: HTMLInputElement;
 
-  private button: HTMLButtonElement;
+  public button: HTMLButtonElement;
 
   constructor() {
     this.button = createElement('button', CSS_EDITOR_STYLE.button, 'Enter');

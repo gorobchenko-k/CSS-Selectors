@@ -6,15 +6,15 @@ import { CodeViewer } from '../Viewer/codeViewer/codeViewer';
 import { ResultViewer } from '../Viewer/resultViewer/resultViewer';
 
 class Level {
-  private codeEditor = new CodeEditor();
+  public codeEditor = new CodeEditor();
 
   private codeViewer = new CodeViewer();
 
-  private resultViewer = new ResultViewer();
+  public resultViewer = new ResultViewer();
 
   private taskTitle: HTMLHeadingElement;
 
-  private answerElements: Element[] = [];
+  public answerElements: Element[] = [];
 
   constructor() {
     this.taskTitle = createElement('h2', ['level__task']);
