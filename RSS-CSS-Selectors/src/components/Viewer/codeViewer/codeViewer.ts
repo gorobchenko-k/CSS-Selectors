@@ -48,6 +48,11 @@ class CodeViewer {
       }
     });
   }
+
+  public clearContent(): void {
+    this.codeElements = [];
+    this.taskCode.innerHTML = '';
+  }
 }
 
 export { CodeViewer };

@@ -76,6 +76,11 @@ class ResultViewer {
       this.tagName.textContent = openedTag === closedTag ? openedTag : `${openedTag} ${closedTag}`;
     }
   }
+
+  public clearContent(): void {
+    this.boardElements = [];
+    this.board.innerHTML = '';
+  }
 }
 
 export { ResultViewer };

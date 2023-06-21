@@ -19,6 +19,10 @@ class CodeEditor {
 
     getElement('.code-editor__code').prepend(this.inputAnswer, this.button);
   }
+
+  public clearContent(): void {
+    this.inputAnswer.value = '';
+  }
 }
 
 export { CodeEditor };
