@@ -25,13 +25,13 @@ const NAV_TEXT: ContentList = {
 };
 
 class Navigation {
-  private navList: HTMLUListElement;
+  public navList: HTMLUListElement;
 
-  private navCurrentLevel: HTMLSpanElement;
+  public navCurrentLevel: HTMLSpanElement;
 
-  private navPrevButton: HTMLButtonElement;
+  public navPrevButton: HTMLButtonElement;
 
-  private navNextButton: HTMLButtonElement;
+  public navNextButton: HTMLButtonElement;
 
   private navListItem: Record<string, HTMLSpanElement>[] = [];
 

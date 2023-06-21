@@ -35,6 +35,12 @@ class Level {
     });
   }
 
+  public clearContent(): void {
+    this.codeEditor.clearContent();
+    this.codeViewer.clearContent();
+    this.resultViewer.clearContent();
+  }
+
   private startAnimationForAnswerElement(element: Element): void {
     setTimeout(() => {
       element.classList.toggle('skew');
