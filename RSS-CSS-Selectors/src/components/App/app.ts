@@ -14,11 +14,12 @@ class App {
     this.currentLevel = 0;
     this.addLevelHandler();
     this.addNavHandler();
+    this.addAppHandler();
   }
 
   public start(): void {
-    this.nav.selectCurrentLevel(this.currentLevel);
-    this.level.setContent(this.currentLevel);
+    const numberOfLevel = localStorage.getItem('currentLevel') || this.currentLevel;
+    this.setNumberOfCurrentLevel(+numberOfLevel);
   }
 
   private addLevelHandler(): void {
@@ -84,6 +85,14 @@ class App {
     this.nav.selectCurrentLevel(this.currentLevel);
     this.level.clearContent();
     this.level.setContent(this.currentLevel);
+  }
+
+  private addAppHandler(): void {
+    window.addEventListener('beforeunload', () => this.setDataToLocalStorage());
+  }
+
+  private setDataToLocalStorage(): void {
+    localStorage.setItem('currentLevel', this.currentLevel.toString());
   }
 }
 
