@@ -13,7 +13,7 @@ class App {
 
   private isLevelDoneWithHelp = false;
 
-  private levelProgress: LevelStatus[] = [];
+  private levelProgress: LevelStatus[] = Array(levels.length).fill(LevelStatus.isNotDone);
 
   constructor() {
     this.currentLevel = 0;
@@ -23,9 +23,11 @@ class App {
   }
 
   public start(): void {
-    const numberOfLevel = localStorage.getItem('currentLevel') || this.currentLevel;
-    this.levelProgress = Array(levels.length).fill(LevelStatus.isNotDone);
-    this.setNumberOfCurrentLevel(+numberOfLevel);
+    this.getDataFromLocalStorage();
+    this.levelProgress.forEach((status, level) => {
+      this.nav.setStyleListItem(level, status);
+    });
+    this.setNumberOfCurrentLevel(this.currentLevel);
   }
 
   private addLevelHandler(): void {
@@ -108,6 +110,14 @@ class App {
 
   private setDataToLocalStorage(): void {
     localStorage.setItem('currentLevel', this.currentLevel.toString());
+    localStorage.setItem('levelProgress', JSON.stringify(this.levelProgress));
+  }
+
+  private getDataFromLocalStorage(): void {
+    const numberOfLevel = localStorage.getItem('currentLevel');
+    const levelProgress = localStorage.getItem('levelProgress');
+    if (numberOfLevel) this.currentLevel = +numberOfLevel;
+    if (levelProgress) this.levelProgress = JSON.parse(levelProgress);
   }
 
   private showAnswer(numberOfSymbol: number): void {
