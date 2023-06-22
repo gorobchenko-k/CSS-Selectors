@@ -46,8 +46,7 @@ class App {
       this.level.answerElements.forEach((element) => {
         this.level.answerElements[0].addEventListener('transitionend', () => {
           if (this.currentLevel < levels.length - 1) {
-            this.currentLevel += 1;
-            this.setNumberOfCurrentLevel();
+            this.setNumberOfCurrentLevel(this.currentLevel + 1);
           }
         });
         element.classList.add('rightAnswer');
@@ -58,15 +57,13 @@ class App {
   private addNavHandler(): void {
     this.nav.navPrevButton.addEventListener('click', () => {
       if (this.currentLevel > 0) {
-        this.currentLevel -= 1;
-        this.setNumberOfCurrentLevel();
+        this.setNumberOfCurrentLevel(this.currentLevel - 1);
       }
     });
 
     this.nav.navNextButton.addEventListener('click', () => {
       if (this.currentLevel < levels.length - 1) {
-        this.currentLevel += 1;
-        this.setNumberOfCurrentLevel();
+        this.setNumberOfCurrentLevel(this.currentLevel + 1);
       }
     });
 
@@ -76,13 +73,13 @@ class App {
       if (listItem) {
         const level = listItem.getAttribute('data-level');
         if (!level) throw new Error('Level is null');
-        this.currentLevel = +level;
-        this.setNumberOfCurrentLevel();
+        this.setNumberOfCurrentLevel(+level);
       }
     });
   }
 
-  private setNumberOfCurrentLevel(): void {
+  private setNumberOfCurrentLevel(numberOfLevel: number): void {
+    this.currentLevel = numberOfLevel;
     this.nav.navCurrentLevel.innerHTML = `${this.currentLevel + 1}`;
     this.nav.selectCurrentLevel(this.currentLevel);
     this.level.clearContent();
