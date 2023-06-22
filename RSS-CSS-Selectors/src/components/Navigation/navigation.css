@@ -30,7 +30,11 @@
   transition: all 0.5s;
 }
 
-.nav__item-status.checked {
+.nav__item-status.isDoneWithHelp {
+  color: #865eff;
+}
+
+.nav__item-status.isDone {
   opacity: 1;
   color: #865eff;
 }
