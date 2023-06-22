@@ -1,5 +1,5 @@
 .code-editor__input-answer {
-  width: 75%;
+  width: calc(100% - 150px);
   margin-right: 5px;
 }
 
@@ -8,5 +8,12 @@
 }
 
 .code-editor__button {
-  width: 20%;
+  width: 60px;
+  margin-right: 5px;
+}
+
+@media (max-width: 850px) {
+  .code-editor {
+    width: 90%;
+  }
 }

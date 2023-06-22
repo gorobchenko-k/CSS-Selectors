@@ -148,9 +148,3 @@ h2 {
   width: 100px;
   margin: 0 20px;
 }
-
-@media (max-width: 720px) {
-  .code-editor {
-    width: 90%;
-  }
-}
