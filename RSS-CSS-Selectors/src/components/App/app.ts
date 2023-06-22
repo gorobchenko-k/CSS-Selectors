@@ -2,6 +2,7 @@ import { Navigation } from '../Navigation/navigation';
 import { Level } from '../Level/level';
 import { getElements } from '../../helpers';
 import { levels } from '../../data/levels';
+import { LevelStatus } from '../../types';
 
 class App {
   private nav = new Navigation();
@@ -9,6 +10,10 @@ class App {
   private level = new Level();
 
   private currentLevel: number;
+
+  private isLevelDoneWithHelp = false;
+
+  private levelProgress: LevelStatus[] = [];
 
   constructor() {
     this.currentLevel = 0;
@@ -19,18 +24,22 @@ class App {
 
   public start(): void {
     const numberOfLevel = localStorage.getItem('currentLevel') || this.currentLevel;
+    this.levelProgress = Array(levels.length).fill(LevelStatus.isNotDone);
     this.setNumberOfCurrentLevel(+numberOfLevel);
   }
 
   private addLevelHandler(): void {
-    this.level.codeEditor.buttonEnter.addEventListener('click', this.checkAnswer.bind(this));
+    this.level.codeEditor.buttonEnter.addEventListener('click', () => this.checkAnswer());
     this.level.codeEditor.inputAnswer.addEventListener('keydown', (e: KeyboardEvent) => {
       this.level.codeEditor.inputAnswer.classList.remove('wrong-answer');
       if (e.code === 'Enter') {
         this.checkAnswer.call(this);
       }
     });
-    this.level.codeEditor.buttonHelp.addEventListener('click', this.showAnswer.bind(this, 0));
+    this.level.codeEditor.buttonHelp.addEventListener('click', () => {
+      this.isLevelDoneWithHelp = true;
+      this.showAnswer(0);
+    });
   }
 
   private checkAnswer(): void {
@@ -45,6 +54,11 @@ class App {
     if (!isRightAnswer) {
       this.level.codeEditor.inputAnswer.classList.add('wrong-answer');
     } else {
+      this.levelProgress[this.currentLevel] = this.isLevelDoneWithHelp
+        ? LevelStatus.isDoneWithHelp
+        : LevelStatus.isDone;
+      this.isLevelDoneWithHelp = false;
+      this.nav.setStyleListItem(this.currentLevel, this.levelProgress[this.currentLevel]);
       this.level.answerElements.forEach((element) => {
         this.level.answerElements[0].addEventListener('transitionend', () => {
           if (this.currentLevel < levels.length - 1) {

@@ -8,4 +8,10 @@ type StyleList = Record<string, string[]>;
 
 type ContentList = Record<string, string>;
 
-export { LevelData, StyleList, ContentList };
+enum LevelStatus {
+  'isNotDone',
+  'isDoneWithHelp',
+  'isDone',
+}
+
+export { LevelData, StyleList, ContentList, LevelStatus };

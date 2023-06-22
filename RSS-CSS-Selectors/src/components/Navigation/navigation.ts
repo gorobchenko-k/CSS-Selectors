@@ -1,7 +1,7 @@
 import './navigation.css';
 import { createElement, getElement } from '../../helpers';
 import { levels } from '../../data/levels';
-import { ContentList, StyleList } from '../../types';
+import { ContentList, LevelStatus, StyleList } from '../../types';
 
 const NAV_STYLE: StyleList = {
   nav: ['header__nav', 'nav'],
@@ -68,6 +68,10 @@ class Navigation {
   public selectCurrentLevel(currentLevel: number): void {
     this.navListItem.forEach((listItem) => listItem.itemNumber.classList.remove('checked'));
     this.navListItem[currentLevel].itemNumber.classList.add('checked');
+  }
+
+  public setStyleListItem(numberOfLevel: number, status: LevelStatus): void {
+    this.navListItem[numberOfLevel].itemStatus.classList.add(LevelStatus[status]);
   }
 }
 
