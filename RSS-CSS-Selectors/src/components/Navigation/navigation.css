@@ -26,16 +26,18 @@
 }
 
 .nav__item-status {
-  opacity: .3;
   transition: all 0.5s;
 }
 
+.nav__item-status.isNotDone {
+  opacity: .3;
+}
+
 .nav__item-status.isDoneWithHelp {
-  color: #865eff;
+  color: #865eff7e;
 }
 
 .nav__item-status.isDone {
-  opacity: 1;
   color: #865eff;
 }
 
@@ -51,4 +53,10 @@
 
 .nav__level-number.checked {
   color: #865eff;
+}
+
+.nav__reset-button {
+  line-height: 30px;
+  margin: 20px 0;
+  width: 100%;
 }
