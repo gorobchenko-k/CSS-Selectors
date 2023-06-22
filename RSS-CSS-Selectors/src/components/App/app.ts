@@ -94,6 +94,8 @@ class App {
         this.setNumberOfCurrentLevel(+level);
       }
     });
+
+    this.nav.navResetButton.addEventListener('click', () => this.resetProgress());
   }
 
   private setNumberOfCurrentLevel(numberOfLevel: number): void {
@@ -128,6 +130,13 @@ class App {
     if (levels[this.currentLevel].selector.length !== numberOfSymbol) {
       setTimeout(this.showAnswer.bind(this, numberOfSymbol + 1), 300);
     }
+  }
+
+  private resetProgress(): void {
+    this.levelProgress = Array(levels.length).fill(LevelStatus.isNotDone);
+    this.levelProgress.forEach((status, level) => {
+      this.nav.setStyleListItem(level, status);
+    });
   }
 }
 

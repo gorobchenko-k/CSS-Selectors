@@ -14,6 +14,7 @@ const NAV_STYLE: StyleList = {
   navItem: ['nav__item'],
   navItemStatus: ['nav__item-status'],
   navLevelNumber: ['nav__level-number'],
+  navResetButton: ['nav__reset-button', 'button'],
 };
 
 const NAV_TEXT: ContentList = {
@@ -22,6 +23,7 @@ const NAV_TEXT: ContentList = {
   navPrevButton: '<',
   navNextButton: '>',
   navItemStatus: '✔',
+  navResetButton: 'Reset progress',
 };
 
 class Navigation {
@@ -33,6 +35,8 @@ class Navigation {
 
   public navNextButton: HTMLButtonElement;
 
+  public navResetButton: HTMLButtonElement;
+
   private navListItem: Record<string, HTMLSpanElement>[] = [];
 
   constructor() {
@@ -40,6 +44,11 @@ class Navigation {
     this.navCurrentLevel = createElement('span', NAV_STYLE.navCurrentLevel, '1');
     this.navPrevButton = createElement('button', NAV_STYLE.navPrevButton, NAV_TEXT.navPrevButton);
     this.navNextButton = createElement('button', NAV_STYLE.navNextButton, NAV_TEXT.navNextButton);
+    this.navResetButton = createElement(
+      'button',
+      NAV_STYLE.navResetButton,
+      NAV_TEXT.navResetButton
+    );
     this.createNavigation();
   }
 
@@ -61,7 +70,7 @@ class Navigation {
       this.navList.append(listItem);
     });
 
-    nav.append(navTitle, navButtons, this.navList);
+    nav.append(navTitle, navButtons, this.navList, this.navResetButton);
     getElement('.header__container').append(nav);
   }
 
@@ -71,6 +80,8 @@ class Navigation {
   }
 
   public setStyleListItem(numberOfLevel: number, status: LevelStatus): void {
+    this.navListItem[numberOfLevel].itemStatus.className = '';
+    this.navListItem[numberOfLevel].itemStatus.classList.add(...NAV_STYLE.navItemStatus);
     this.navListItem[numberOfLevel].itemStatus.classList.add(LevelStatus[status]);
   }
 }
