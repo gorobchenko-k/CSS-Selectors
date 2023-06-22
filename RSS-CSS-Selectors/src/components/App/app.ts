@@ -61,12 +61,12 @@ class App {
         : LevelStatus.isDone;
       this.isLevelDoneWithHelp = false;
       this.nav.setStyleListItem(this.currentLevel, this.levelProgress[this.currentLevel]);
+      this.level.answerElements[0].addEventListener('transitionend', () => {
+        if (this.currentLevel < levels.length - 1) {
+          this.setNumberOfCurrentLevel(this.currentLevel + 1);
+        }
+      });
       this.level.answerElements.forEach((element) => {
-        this.level.answerElements[0].addEventListener('transitionend', () => {
-          if (this.currentLevel < levels.length - 1) {
-            this.setNumberOfCurrentLevel(this.currentLevel + 1);
-          }
-        });
         element.classList.add('rightAnswer');
       });
     }
