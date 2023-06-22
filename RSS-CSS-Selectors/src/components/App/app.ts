@@ -23,13 +23,14 @@ class App {
   }
 
   private addLevelHandler(): void {
-    this.level.codeEditor.button.addEventListener('click', this.checkAnswer.bind(this));
+    this.level.codeEditor.buttonEnter.addEventListener('click', this.checkAnswer.bind(this));
     this.level.codeEditor.inputAnswer.addEventListener('keydown', (e: KeyboardEvent) => {
       this.level.codeEditor.inputAnswer.classList.remove('wrong-answer');
       if (e.code === 'Enter') {
         this.checkAnswer.call(this);
       }
     });
+    this.level.codeEditor.buttonHelp.addEventListener('click', this.showAnswer.bind(this, 0));
   }
 
   private checkAnswer(): void {
@@ -93,6 +94,16 @@ class App {
 
   private setDataToLocalStorage(): void {
     localStorage.setItem('currentLevel', this.currentLevel.toString());
+  }
+
+  private showAnswer(numberOfSymbol: number): void {
+    this.level.codeEditor.inputAnswer.value = levels[this.currentLevel].selector.slice(
+      0,
+      numberOfSymbol
+    );
+    if (levels[this.currentLevel].selector.length !== numberOfSymbol) {
+      setTimeout(this.showAnswer.bind(this, numberOfSymbol + 1), 300);
+    }
   }
 }
 
