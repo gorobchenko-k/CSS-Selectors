@@ -26,7 +26,7 @@ export const createElement = <K extends keyof HTMLElementTagNameMap>(
 ): HTMLElementTagNameMap[K] => {
   const element = document.createElement(tagName);
   if (classes) {
-    classes.forEach((className) => element.classList.add(className));
+    element.classList.add(...classes);
   }
   if (content) element.textContent = content;
   if (idName) element.setAttribute('id', idName);
