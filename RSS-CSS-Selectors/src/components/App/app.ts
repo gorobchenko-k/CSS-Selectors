@@ -3,6 +3,7 @@ import { Level } from '../Level/level';
 import { getElements } from '../../helpers';
 import { levels } from '../../data/levels';
 import { LevelStatus } from '../../types';
+import { Modal } from '../Modal/modal';
 
 class App {
   private nav = new Navigation();
@@ -61,14 +62,21 @@ class App {
         : LevelStatus.isDone;
       this.isLevelDoneWithHelp = false;
       this.nav.setStyleListItem(this.currentLevel, this.levelProgress[this.currentLevel]);
-      this.level.answerElements[0].addEventListener('transitionend', () => {
-        if (this.currentLevel < levels.length - 1) {
-          this.setNumberOfCurrentLevel(this.currentLevel + 1);
-        }
-      });
+      this.level.answerElements[0].addEventListener('transitionend', () => this.setNextLevel());
       this.level.answerElements.forEach((element) => {
         element.classList.add('rightAnswer');
       });
+    }
+  }
+
+  private setNextLevel(): void {
+    if (this.levelProgress.every((level) => level !== LevelStatus.isNotDone)) {
+      const modal = new Modal();
+      modal.buildModal('Congratulations! You have passed all the levels!');
+      this.level.clearContent();
+    } else {
+      const numberOfNextLevel = this.levelProgress.indexOf(LevelStatus.isNotDone);
+      this.setNumberOfCurrentLevel(numberOfNextLevel);
     }
   }
 
