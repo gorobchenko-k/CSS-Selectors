@@ -40,6 +40,11 @@ rectangle {
   background: linear-gradient(90deg, #dbd0fd, #4b3982);
 }
 
+circle.small {
+  width: 25px;
+  height: 25px;
+}
+
 squares.small {
   width: 40px;
   height: 40px;
