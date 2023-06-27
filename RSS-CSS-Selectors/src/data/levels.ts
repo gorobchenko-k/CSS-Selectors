@@ -10,15 +10,6 @@ export const levels: LevelData[] = [
     selector: 'circle',
   },
   {
-    task: 'Select the squares',
-    boardMarkup: `
-    <squares/>
-    <circle/>
-    <squares/>
-    `,
-    selector: 'squares',
-  },
-  {
     task: 'Select the gradient circle',
     boardMarkup: `
     <circle id='gradient'/>
@@ -68,5 +59,86 @@ export const levels: LevelData[] = [
     <rectangle class='small'/>
     `,
     selector: 'circle + rectangle',
+  },
+  {
+    task: 'Select empty rectangles',
+    boardMarkup: `
+    <rectangle>
+      <circle class='small'/>
+    </rectangle>
+    <circle />
+    <rectangle class='small'/>
+    <circle>
+      <rectangle class='small'/>
+    </circle>
+    <rectangle/>
+    `,
+    selector: 'rectangle:empty',
+  },
+  {
+    task: 'Select a non-gradient circle',
+    boardMarkup: `
+    <squares>
+      <circle class='small'/>
+    </squares>
+    <circle>
+      <squares class='small' />
+    </circle>
+    <circle id='gradient'/>
+    `,
+    selector: 'circle:not(#gradient)',
+  },
+  {
+    task: 'Select every third square',
+    boardMarkup: `
+    <squares class='small'/>
+    <squares class='small' />
+    <squares class='small' />
+    <squares class='small' />
+    <squares class='small' />
+    <squares class='small' />
+    <squares class='small' />
+    <squares class='small' />
+    <squares class='small' />
+    <squares class='small' />
+    <squares class='small' />
+    `,
+    selector: 'squares:nth-child(3n)',
+  },
+  {
+    task: 'Select every third circle',
+    boardMarkup: `
+    <squares class='small'/>
+    <circle class='small' />
+    <circle class='small' />
+    <squares class='small' />
+    <squares class='small' />
+    <circle class='small' />
+    <squares class='small' />
+    <circle class='small' />
+    <squares class='small' />
+    <circle class='small' />
+    <squares class='small' />
+    <circle class='small' />
+    <squares class='small' />
+    `,
+    selector: 'circle:nth-of-type(3n)',
+  },
+  {
+    task: 'Select the circle that is the only one in the square',
+    boardMarkup: `
+    <squares>
+      <circle class='small' />
+    </squares>
+    <circle>
+      <squares class='small'/>
+    </circle>
+    <squares>
+      <circle class='small'/>
+      <circle class='small'/>
+      <circle class='small'/>
+    </squares>
+    `,
+    selector: 'squares circle:only-child',
   },
 ];
