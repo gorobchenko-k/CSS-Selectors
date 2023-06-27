@@ -46,9 +46,12 @@ class App {
   }
 
   private checkAnswer(): void {
-    const inputAnswer = Array.from(
-      getElements(this.level.codeEditor.inputAnswer.value, this.level.resultViewer.board)
-    );
+    const answer = this.level.codeEditor.inputAnswer.value;
+    if (!this.isValidAnswerValue(answer)) {
+      this.level.codeEditor.inputAnswer.classList.add('wrong-answer');
+      return;
+    }
+    const inputAnswer = Array.from(getElements(answer, this.level.resultViewer.board));
 
     const isRightAnswer =
       this.level.answerElements.length === inputAnswer.length &&
@@ -67,6 +70,10 @@ class App {
         element.classList.add('rightAnswer');
       });
     }
+  }
+
+  private isValidAnswerValue(value: string): boolean {
+    return /^[a-zA-Z0-9-_.#>+,~:*[\]() ]+$/.test(value.trim());
   }
 
   private setNextLevel(): void {
