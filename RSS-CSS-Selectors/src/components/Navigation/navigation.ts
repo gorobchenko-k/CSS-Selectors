@@ -5,50 +5,41 @@ import { ContentList, LevelStatus, StyleList } from '../../types';
 
 const NAV_STYLE: StyleList = {
   nav: ['header__nav', 'nav'],
-  navTitle: ['nav__title'],
-  navCurrentLevel: ['nav__current-level'],
-  navButtons: ['nav__buttons'],
-  navPrevButton: ['nav__prev-button', 'button'],
-  navNextButton: ['nav__next-button', 'button'],
-  navList: ['nav__list'],
-  navItem: ['nav__item'],
-  navItemStatus: ['nav__item-status'],
-  navLevelNumber: ['nav__level-number'],
-  navResetButton: ['nav__reset-button', 'button'],
+  title: ['nav__title'],
+  currentLevel: ['nav__current-level'],
+  buttons: ['nav__buttons'],
+  prevButton: ['nav__prev-button', 'button'],
+  nextButton: ['nav__next-button', 'button'],
+  list: ['nav__list'],
+  item: ['nav__item'],
+  itemStatus: ['nav__item-status'],
+  levelNumber: ['nav__level-number'],
+  resetButton: ['nav__reset-button', 'button'],
 };
 
 const NAV_TEXT: ContentList = {
-  navTitleLevel: 'Level ',
-  navTitleNumberOfLevel: ` of ${levels.length}`,
-  navPrevButton: '<',
-  navNextButton: '>',
-  navItemStatus: '✔',
-  navResetButton: 'Reset progress',
+  titleLevel: 'Level ',
+  titleNumberOfLevel: ` of ${levels.length}`,
+  prevButton: '<',
+  nextButton: '>',
+  itemStatus: '✔',
+  resetButton: 'Reset progress',
 };
 
 class Navigation {
-  public navList: HTMLUListElement;
+  private listItems: Record<string, HTMLSpanElement>[] = [];
 
-  public navCurrentLevel: HTMLSpanElement;
+  public navList = createElement('ul', NAV_STYLE.list);
 
-  public navPrevButton: HTMLButtonElement;
+  public currentLevel = createElement('span', NAV_STYLE.currentLevel, '1');
 
-  public navNextButton: HTMLButtonElement;
+  public prevButton = createElement('button', NAV_STYLE.prevButton, NAV_TEXT.prevButton);
 
-  public navResetButton: HTMLButtonElement;
+  public nextButton = createElement('button', NAV_STYLE.nextButton, NAV_TEXT.nextButton);
 
-  private navListItem: Record<string, HTMLSpanElement>[] = [];
+  public resetButton = createElement('button', NAV_STYLE.resetButton, NAV_TEXT.resetButton);
 
   constructor() {
-    this.navList = createElement('ul', NAV_STYLE.navList);
-    this.navCurrentLevel = createElement('span', NAV_STYLE.navCurrentLevel, '1');
-    this.navPrevButton = createElement('button', NAV_STYLE.navPrevButton, NAV_TEXT.navPrevButton);
-    this.navNextButton = createElement('button', NAV_STYLE.navNextButton, NAV_TEXT.navNextButton);
-    this.navResetButton = createElement(
-      'button',
-      NAV_STYLE.navResetButton,
-      NAV_TEXT.navResetButton
-    );
     this.createNavigation();
   }
 
@@ -57,8 +48,8 @@ class Navigation {
     const navTitle = createElement('h2', NAV_STYLE.navTitle);
     const navButtons = createElement('div', NAV_STYLE.navButtons);
 
-    navTitle.append(NAV_TEXT.navTitleLevel, this.navCurrentLevel, NAV_TEXT.navTitleNumberOfLevel);
-    navButtons.append(this.navPrevButton, this.navNextButton);
+    navTitle.append(NAV_TEXT.navTitleLevel, this.currentLevel, NAV_TEXT.navTitleNumberOfLevel);
+    navButtons.append(this.prevButton, this.nextButton);
 
     levels.forEach((_, index) => {
       const listItem = createElement('li', NAV_STYLE.navItem);
@@ -66,23 +57,23 @@ class Navigation {
       const itemNumber = createElement('span', NAV_STYLE.navLevelNumber, `Level ${index + 1}`);
       listItem.setAttribute('data-level', index.toString());
       listItem.append(itemStatus, itemNumber);
-      this.navListItem.push({ itemStatus, itemNumber });
+      this.listItems.push({ itemStatus, itemNumber });
       this.navList.append(listItem);
     });
 
-    nav.append(navTitle, navButtons, this.navList, this.navResetButton);
+    nav.append(navTitle, navButtons, this.navList, this.resetButton);
     getElement('.header__container').append(nav);
   }
 
   public selectCurrentLevel(currentLevel: number): void {
-    this.navListItem.forEach((listItem) => listItem.itemNumber.classList.remove('checked'));
-    this.navListItem[currentLevel].itemNumber.classList.add('checked');
+    this.listItems.forEach((listItem) => listItem.itemNumber.classList.remove('checked'));
+    this.listItems[currentLevel].itemNumber.classList.add('checked');
   }
 
   public setStyleListItem(numberOfLevel: number, status: LevelStatus): void {
-    this.navListItem[numberOfLevel].itemStatus.className = '';
-    this.navListItem[numberOfLevel].itemStatus.classList.add(...NAV_STYLE.navItemStatus);
-    this.navListItem[numberOfLevel].itemStatus.classList.add(LevelStatus[status]);
+    this.listItems[numberOfLevel].itemStatus.className = '';
+    this.listItems[numberOfLevel].itemStatus.classList.add(...NAV_STYLE.navItemStatus);
+    this.listItems[numberOfLevel].itemStatus.classList.add(LevelStatus[status]);
   }
 }
 

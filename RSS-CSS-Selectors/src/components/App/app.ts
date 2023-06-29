@@ -88,13 +88,13 @@ class App {
   }
 
   private addNavHandler(): void {
-    this.nav.navPrevButton.addEventListener('click', () => {
+    this.nav.prevButton.addEventListener('click', () => {
       if (this.currentLevel > 0) {
         this.setNumberOfCurrentLevel(this.currentLevel - 1);
       }
     });
 
-    this.nav.navNextButton.addEventListener('click', () => {
+    this.nav.nextButton.addEventListener('click', () => {
       if (this.currentLevel < levels.length - 1) {
         this.setNumberOfCurrentLevel(this.currentLevel + 1);
       }
@@ -110,12 +110,12 @@ class App {
       }
     });
 
-    this.nav.navResetButton.addEventListener('click', () => this.resetProgress());
+    this.nav.resetButton.addEventListener('click', () => this.resetProgress());
   }
 
   private setNumberOfCurrentLevel(numberOfLevel: number): void {
     this.currentLevel = numberOfLevel;
-    this.nav.navCurrentLevel.innerHTML = `${this.currentLevel + 1}`;
+    this.nav.currentLevel.innerHTML = `${this.currentLevel + 1}`;
     this.nav.selectCurrentLevel(this.currentLevel);
     this.level.clearContent();
     this.level.setContent(this.currentLevel);
