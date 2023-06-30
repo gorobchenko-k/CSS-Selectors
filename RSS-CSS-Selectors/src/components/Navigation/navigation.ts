@@ -45,16 +45,16 @@ class Navigation {
 
   private createNavigation(): void {
     const nav = createElement('nav', NAV_STYLE.nav);
-    const navTitle = createElement('h2', NAV_STYLE.navTitle);
-    const navButtons = createElement('div', NAV_STYLE.navButtons);
+    const navTitle = createElement('h2', NAV_STYLE.title);
+    const navButtons = createElement('div', NAV_STYLE.buttons);
 
-    navTitle.append(NAV_TEXT.navTitleLevel, this.currentLevel, NAV_TEXT.navTitleNumberOfLevel);
+    navTitle.append(NAV_TEXT.titleLevel, this.currentLevel, NAV_TEXT.titleNumberOfLevel);
     navButtons.append(this.prevButton, this.nextButton);
 
     levels.forEach((_, index) => {
-      const listItem = createElement('li', NAV_STYLE.navItem);
-      const itemStatus = createElement('span', NAV_STYLE.navItemStatus, NAV_TEXT.navItemStatus);
-      const itemNumber = createElement('span', NAV_STYLE.navLevelNumber, `Level ${index + 1}`);
+      const listItem = createElement('li', NAV_STYLE.item);
+      const itemStatus = createElement('span', NAV_STYLE.itemStatus, NAV_TEXT.itemStatus);
+      const itemNumber = createElement('span', NAV_STYLE.levelNumber, `Level ${index + 1}`);
       listItem.setAttribute('data-level', index.toString());
       listItem.append(itemStatus, itemNumber);
       this.listItems.push({ itemStatus, itemNumber });
@@ -72,7 +72,7 @@ class Navigation {
 
   public setStyleListItem(numberOfLevel: number, status: LevelStatus): void {
     this.listItems[numberOfLevel].itemStatus.className = '';
-    this.listItems[numberOfLevel].itemStatus.classList.add(...NAV_STYLE.navItemStatus);
+    this.listItems[numberOfLevel].itemStatus.classList.add(...NAV_STYLE.itemStatus);
     this.listItems[numberOfLevel].itemStatus.classList.add(LevelStatus[status]);
   }
 }
