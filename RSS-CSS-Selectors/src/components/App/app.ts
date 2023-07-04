@@ -47,7 +47,7 @@ class App {
 
   private checkAnswer(): void {
     const answer = this.level.codeEditor.inputAnswer.value;
-    if (!this.isValidAnswerValue(answer)) {
+    if (!this.isValidSelector(answer)) {
       this.level.codeEditor.inputAnswer.classList.add('wrong-answer');
       return;
     }
@@ -72,8 +72,13 @@ class App {
     }
   }
 
-  private isValidAnswerValue(value: string): boolean {
-    return /^[a-zA-Z0-9-_.#>+,~:*[\]() ]+$/.test(value.trim());
+  private isValidSelector(selector: string): boolean {
+    try {
+      document.createDocumentFragment().querySelector(selector);
+      return true;
+    } catch (error) {
+      return false;
+    }
   }
 
   private setNextLevel(): void {
