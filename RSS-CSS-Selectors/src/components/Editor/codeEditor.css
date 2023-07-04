@@ -1,3 +1,54 @@
+.code-editor {
+  background-color: #2B282F;
+  width: 45%;
+  border-radius: 5px;
+  margin: 20px 5px;
+  padding: 10px;
+}
+
+.code-editor__container {
+  padding: 0;
+  margin: 0;
+}
+
+.code-editor__header {
+  background-color: #272525;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.code-editor__title {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.code-editor__file-name {
+  font-size: 12px;
+}
+
+.code-editor__file {
+  border: 1px solid #5C595F;
+  background-color: #2B282F;
+  width: 100%;
+  display: flex;
+}
+
+.code-editor__line-numbers {
+  background-color: #5C595F;
+  padding: 5px;
+  text-align: right;
+}
+
+.code-editor__code {
+  width: 100%;
+}
+
+.code-editor__text {
+  margin: 0;
+}
+
 .code-editor__input-answer {
   width: calc(100% - 150px);
   margin-right: 5px;

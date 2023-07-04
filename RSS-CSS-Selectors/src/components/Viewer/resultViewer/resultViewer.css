@@ -1,3 +1,12 @@
+.result-viewer {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.result-viewer__container {
+  position: relative;
+}
+
 .result-viewer__tagName {
   position: absolute;
   z-index: 5;
@@ -22,6 +31,7 @@
   border-radius: 10px;
   border: 1px solid #5C595F;
   padding: 15px 15px 22px 15px;
+  margin: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-around;

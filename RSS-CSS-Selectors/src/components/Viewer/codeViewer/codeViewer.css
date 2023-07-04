@@ -1,3 +1,7 @@
+.html-viewer {
+  color: rgba(255, 255, 255, .3);
+}
+
 .html-viewer__task-code div {
   padding-left: 20px;
 }
